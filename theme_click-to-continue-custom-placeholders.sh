@@ -112,7 +112,7 @@ continue_form() {
 	echo "
 		<form action=\"/opennds_preauth/\" method=\"get\" id=\"form\">
 			<input type=\"hidden\" name=\"fas\" value=\"$fas\">
-                        <input type=\"hidden\" name=\"mode\" value=\"$mode\">
+            <input type=\"hidden\" name=\"mode\" value=\"$mode\">
 			$input
 			<input type=\"hidden\" name=\"landing\" value=\"yes\" >
 			<input type=\"button\" id=\"submitBtn\" onclick=\"senddata()\" value=\"インターネット接続を開始する\" style=\"width:100%;\">
@@ -142,9 +142,9 @@ thankyou_page () {
 	mode=$(wget -O - -q http://192.168.2.214:8080/api/v1/opennds/mode.cgi)
 	if [ $mode -eq 1 ];then
 		input="<input type=\"text\" name=\"token\" placeholder=\"パスコードを入力\" value=\"\" >"
-        elif [ $mode -eq 2 ];then
-                input="<input type=\"text\" name=\"user\" placeholder=\"............ID\" value=\"\"><br />
-                        <input type=\"password\" name=\"password\" style=\"margin-top:5px;\" placeholder=\"...............\" value=\"\" >"
+    elif [ $mode -eq 2 ];then
+        input="<input type=\"text\" name=\"user\" placeholder=\"ユーザーID\" value=\"\"><br />
+        <input type=\"password\" name=\"password\" style=\"margin-top:5px;\" placeholder=\"パスワード\" value=\"\" >"
 	else
 		input="<input type=\"hidden\" name=\"token\" value=\"$(date +%Y%m%d370)\">"
 	fi
@@ -155,9 +155,9 @@ thankyou_page () {
                 <form action=\"/opennds_preauth/\" method=\"get\" id=\"form\">
                         <input type=\"hidden\" name=\"fas\" value=\"$fas\">
                         <input type=\"hidden\" name=\"mode\" value=\"$mode\">
-			$input
+						$input
                         <input type=\"hidden\" name=\"landing\" value=\"yes\" >
-			<input type=\"button\" id=\"submitBtn\" onclick=\"senddata()\" value=\"インターネット接続を開始する\" style=\"width:100%;\">
+						<input type=\"button\" id=\"submitBtn\" onclick=\"senddata()\" value=\"インターネット接続を開始する\" style=\"width:100%;\">
                 </form>
         "
 
@@ -191,11 +191,11 @@ landing_page() {
         	auth_log
 
         	if [ "$ndsstatus" = "authenticated" ]; then
-			wget -O - -q http://192.168.2.214:8080/api/v1/opennds/contents.cgi?case=1
+				wget -O - -q http://192.168.2.214:8080/api/v1/opennds/contents.cgi?case=1
        		else
-			wget -O - -q http://192.168.2.214:8080/api/v1/opennds/contents.cgi?case=2
+				wget -O - -q http://192.168.2.214:8080/api/v1/opennds/contents.cgi?case=2
 	        fi
-		footer
+			footer
 	fi
 }
 
