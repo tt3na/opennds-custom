@@ -124,8 +124,7 @@
 			box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 		}
 
-		input[type="button"],
-		input[type="submit"] {
+		button {
 			width: 100%;
 			padding: 14px;
 			margin-top: 20px;
@@ -140,19 +139,16 @@
 			box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 		}
 
-		input[type="button"]:hover:not(:disabled),
-		input[type="submit"]:hover:not(:disabled) {
+		button:hover:not(:disabled) {
 			transform: translateY(-2px);
 			box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
 		}
 
-		input[type="button"]:active:not(:disabled),
-		input[type="submit"]:active:not(:disabled) {
+		button:active:not(:disabled) {
 			transform: translateY(0px);
 		}
 
-		input[type="button"]:disabled,
-		input[type="submit"]:disabled {
+		button:disabled {
 			background: #ccc;
 			cursor: not-allowed;
 			box-shadow: none;
