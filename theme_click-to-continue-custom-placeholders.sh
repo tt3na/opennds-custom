@@ -115,7 +115,9 @@ continue_form() {
             <input type=\"hidden\" name=\"mode\" value=\"$mode\">
 			$input
 			<input type=\"hidden\" name=\"landing\" value=\"yes\" >
-			<input type=\"button\" id=\"submitBtn\" onclick=\"senddata()\" value=\"インターネット接続を開始する\" style=\"width:100%;\">
+			<button type=\"button\" id=\"submitBtn\" onclick=\"senddata()\" style=\"width:100%;\">
+				インターネット接続を開始する
+			</button>
 		</form>
 	"
 
@@ -157,7 +159,9 @@ thankyou_page () {
                         <input type=\"hidden\" name=\"mode\" value=\"$mode\">
 						$input
                         <input type=\"hidden\" name=\"landing\" value=\"yes\" >
-						<input type=\"button\" id=\"submitBtn\" onclick=\"senddata()\" value=\"インターネット接続を開始する\" style=\"width:100%;\">
+						<button type=\"button\" id=\"submitBtn\" onclick=\"senddata()\" style=\"width:100%;\">
+							インターネット接続を開始する
+						</button>
                 </form>
         "
 
