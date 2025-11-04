@@ -8,6 +8,7 @@ RUN useradd --uid 1000 --gid 1000 --shell /bin/bash -G pi pi
 
 RUN ulimit -n 1024 && dnf update -y
 RUN dnf install -y httpd python3 vim
+RUN dnf --enablerepo=epel -y install openldap-clients 
 
 COPY ./00-mpm.conf /etc/httpd/conf.modules.d/00-mpm.conf
 
