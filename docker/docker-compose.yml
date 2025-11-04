@@ -1,0 +1,10 @@
+services:
+  backend:
+    image: opennds-auth
+    build: .
+    restart: always
+    volumes:
+      - "./data:/home/pi"
+    ports:
+      - '8080:80'
+    tty: true
