@@ -8,3 +8,5 @@ services:
     ports:
       - '8080:80'
     tty: true
+    environment:
+      - LDAP_SERVER=127.0.0.1:389

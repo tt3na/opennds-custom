@@ -10,6 +10,9 @@
 # Title of this theme:
 title="theme_click-to-continue-custom-placeholders"
 
+# Auth-Container
+auth_container="127.0.0.1:8080"
+
 # functions:
 
 download_data_files() {
@@ -96,7 +99,7 @@ continue_form() {
 	urldecode "$entitydecoded"
 	banner1_message="$urldecoded"
 
-	mode=$(wget -O - -q http://127.0.0.1:8080/api/v1/opennds/mode.cgi)
+	mode=$(wget -O - -q http://$auth_container/api/v1/opennds/mode.cgi)
 
 	if [ $mode -eq 1 ];then
 		input="<input type=\"text\" name=\"token\" placeholder=\"パスコードを入力\" value=\"\">"
@@ -107,7 +110,7 @@ continue_form() {
 		input="<input type=\"hidden\" name=\"token\" value=\"$(date +%Y%m%d370)\">"
 	fi
 
-	wget -O - -q http://127.0.0.1:8080/api/v1/opennds/contents.cgi?case=0
+	wget -O - -q http://$auth_container/api/v1/opennds/contents.cgi?case=0
 
 	echo "
 		<form action=\"/opennds_preauth/\" method=\"get\" id=\"form\">
@@ -141,7 +144,7 @@ thankyou_page () {
 	urldecode "$entitydecoded"
 	banner2_message="$urldecoded"
 
-	mode=$(wget -O - -q http://127.0.0.1:8080/api/v1/opennds/mode.cgi)
+	mode=$(wget -O - -q http://$auth_container/api/v1/opennds/mode.cgi)
 	if [ $mode -eq 1 ];then
 		input="<input type=\"text\" name=\"token\" placeholder=\"パスコードを入力\" value=\"\" >"
     elif [ $mode -eq 2 ];then
@@ -151,7 +154,7 @@ thankyou_page () {
 		input="<input type=\"hidden\" name=\"token\" value=\"$(date +%Y%m%d370)\">"
 	fi
 
-	wget -O - -q http://127.0.0.1:8080/api/v1/opennds/contents.cgi?case=0
+	wget -O - -q http://$auth_container/api/v1/opennds/contents.cgi?case=0
 
         echo "
                 <form action=\"/opennds_preauth/\" method=\"get\" id=\"form\">
@@ -179,13 +182,13 @@ landing_page() {
 	banner3_message="$urldecoded"
 
 	if [ $mode -ne 2 ];then
-		wget -O /dev/null -q http://127.0.0.1:8080/api/v1/opennds/captive.cgi?token=$token
+		wget -O /dev/null -q http://$auth_container/api/v1/opennds/captive.cgi?token=$token
 	else
-		wget -O /dev/null -q http://127.0.0.1:8080/api/v1/opennds/ldap.cgi?USER=$user\&PASSWORD=$password
+		wget -O /dev/null -q http://$auth_container/api/v1/opennds/ldap.cgi?USER=$user\&PASSWORD=$password
 	fi
 
 	if [ $? -ne 0 ];then
-		wget -O - -q http://127.0.0.1:8080/api/v1/opennds/contents.cgi?case=2
+		wget -O - -q http://$auth_container/api/v1/opennds/contents.cgi?case=2
 		continue_form
 	else
         	configure_log_location
@@ -195,9 +198,9 @@ landing_page() {
         	auth_log
 
         	if [ "$ndsstatus" = "authenticated" ]; then
-				wget -O - -q http://127.0.0.1:8080/api/v1/opennds/contents.cgi?case=1
+				wget -O - -q http://$auth_container/api/v1/opennds/contents.cgi?case=1
        		else
-				wget -O - -q http://127.0.0.1:8080/api/v1/opennds/contents.cgi?case=2
+				wget -O - -q http://$auth_container/api/v1/opennds/contents.cgi?case=2
 	        fi
 			footer
 	fi

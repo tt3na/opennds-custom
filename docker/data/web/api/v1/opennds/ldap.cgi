@@ -42,7 +42,7 @@ if [ "$user" == "" ] || [ "$pass" == "" ]; then
 	code=1
 else
 	# LDAP認証
-	ldapwhoami -x -D 'cn='"$user_dec"',ou=people,dc=ldap,dc=com' -w ''"$pass_dec"'' -H ldap://ldap-server:389
+	ldapwhoami -x -D 'cn='"$user_dec"',ou=people,dc=ldap,dc=com' -w ''"$pass_dec"'' -H ldap://$LDAP_SERVER
 	if [ $? -eq 0 ]; then
 	    code=0
 	else
